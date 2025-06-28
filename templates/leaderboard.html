@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaderboard</title>
+</head>
+<body>
+  <h2>Leaderboard</h2>
+
+  <form method="get" action="/leaderboard">
+    <label>Select Assessment:</label>
+    <select name="aid" onchange="this.form.submit()">
+      {% for a in assessments %}
+        <option value="{{ a.aid }}" {% if selected_aid == a.aid %}selected{% endif %}>{{ a.title }}</option>
+      {% endfor %}
+    </select>
+  </form>
+
+  <br>
+
+  <table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+      <th>Username</th>
+      <th>Average Score</th>
+    </tr>
+    {% for l in leaders %}
+      <tr>
+        <td>{{ l.username }}</td>
+        <td>{{ "%.2f"|format(l.avg_score) }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>

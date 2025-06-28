@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Scores</title>
+</head>
+<body>
+  <h1>Your Scores</h1>
+  <p><a href="/home">Back to Home</a></p>
+
+  {% if records %}
+    <table border="1" cellpadding="5" cellspacing="0">
+      <tr>
+        <th>Assessment</th>
+        <th>Task</th>
+        <th>Attempt #</th>
+        <th>Score</th>
+        <th>Submitted At</th>
+      </tr>
+      {% for r in records %}
+      <tr>
+        <td>{{ r.assessment_title }}</td>
+        <td>{{ r.task_title }}</td>
+        <td>{{ r.attempt_number }}</td>
+        <td>
+          {% if r.score is not none %}
+            {{ '%.1f'|format(r.score) }}%
+          {% else %}
+            Not graded
+          {% endif %}
+        </td>
+        <td>{{ r.submit_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No submissions found.</p>
+  {% endif %}
+</body>
+</html>
