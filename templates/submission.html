@@ -1,0 +1,12 @@
+{% block content %}
+
+  {% if message %}
+    <div style="color: green;">{{ message }}</div>
+  {% endif %}
+  
+  {% if error %}
+    <div class="error">{{ error }}</div>
+  {% endif %}
+
+<a href="/home">Back to Assessment</a>
+{% endblock %}

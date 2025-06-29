@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+{% block content %}
 <head>
   <title>Your Scores</title>
 </head>
@@ -32,8 +31,14 @@
       </tr>
       {% endfor %}
     </table>
+    <div>
+      <a href="/downlaod">Download All Scores</a>
+    </div>
+    {% if error %}
+      <p style="color: red;">{{ error }}</p>
+    {% endif %}
   {% else %}
     <p>No submissions found.</p>
   {% endif %}
 </body>
-</html>
+{% endblock %}

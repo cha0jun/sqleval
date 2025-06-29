@@ -1,26 +1,31 @@
-{% block title %}Eval{% endblock %}
-
 {% block content %}
 <div class="login-container">
-  <h2>Eval</h2>
+<div>
+  <label>Quick Links:</label>
+  <a href="/score">Scores</a>
+  <a href="/leaderboard">Leaderboard</a>
+</div>
 
+<h1>Assesment: {{ a_title }}</h1>
+<div>
+  <label for="Assessment">Assessment ID: {{ a_id }}</label>
+</div>
+<div>
+  <label for="Task">Task ID: {{ t_id }}</label> 
+</div> 
+  {% if message %}
+    <div style="color: green;">{{ message }}</div>
+  {% endif %}
+  
   {% if error %}
     <div class="error">{{ error }}</div>
   {% endif %}
 
-  <form method="post" action="/home">
+  <form method="post" action="/submit">
+    <input type="hidden" name="a_id" value="{{a_id}}">
+    <input type="hidden" name="t_id" value="{{t_id}}">
     <div>
-      <label for="Assessment">Assessment ID:</label>
-      <input type="text" name="aid" id="Assessment" required>
-    </div>
-
-    <div>
-      <label for="Task">Task ID:</label>
-      <input type="text" name="tid" id="Task" required>
-    </div>
-
-    <div>
-      <label for="Code">Code:</label>
+      <div><label for="Code">Code:</label></div>
       <textarea id="Code" name="code" rows = "40" cols= "80"></textarea>
     </div>
 
